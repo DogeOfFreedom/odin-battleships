@@ -36,7 +36,7 @@ export default class Gameboard {
         }        
 
         // Check if tiles are inside board and unoccupied
-        for(let i = 0; i < size; i++) {
+        for(let i = 0; i <= size; i++) {
             if(occupiedTiles[i][0] < 0 || occupiedTiles[i][0] > 10 || occupiedTiles[i][1] < 0 || occupiedTiles[i][1] > 10) {
                 return false;
             }
@@ -50,6 +50,7 @@ export default class Gameboard {
         const newShip = new Ship(size);
         occupiedTiles.forEach(tile => {
             this.shipPlacements[tile] = newShip;
+            this.board[tile[1]][tile[0]] = "s";
         })
         this.ships.push(newShip);
         return true;
