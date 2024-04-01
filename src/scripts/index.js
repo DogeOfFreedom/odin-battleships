@@ -1,6 +1,6 @@
 import "../style.css";
-import Ship from './ship';
+import { renderBoards } from "./boardRenderer";
+import Game from "./game";
 
-
-const myShip = new Ship(3);
-myShip.hit();
+const game = new Game();
+renderBoards(game);

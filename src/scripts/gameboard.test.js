@@ -1,6 +1,4 @@
-import ComputerPlayer from "./computerPlayer";
-import Gameboard from "./gameboard"
-import Player from "./player";
+import Gameboard from "./gameboard";
 
 test("gameboard instantiated correctly", () => {
     const gameboard = new Gameboard();
@@ -55,17 +53,3 @@ test("Board reports all ship sunk", () => {
     gameBoard.receiveAttack(0, 0);
     expect(gameBoard.allSunk()).toBe(true);
 })
-
-test("Computer makes a move that's within the board", () => {
-    const computer = new ComputerPlayer();
-    const coord = computer.chooseRandomCoord();
-    expect(coord[0] >= 0 && coord[0] <= 10).toBe(true);
-    expect(coord[1] >= 0 && coord[1] <= 10).toBe(true);
-})
-
-test("Computer doesn't make same move twice", () => {
-    const computer = new ComputerPlayer();
-    computer.moves.push([1,2]);
-    expect(computer.alreadyMadeMove([1,2])).toBe(true);
-})
-
