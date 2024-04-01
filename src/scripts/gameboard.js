@@ -4,7 +4,7 @@ import Ship from "./ship";
 /* eslint-disable prefer-spread */
 export default class Gameboard {
     constructor() {
-        this.board = Array.apply(null, Array(10)).map(() => Array(10));
+        this.board = Array.apply(null, Array(10)).map(() => Array(10).fill("e"));
         this.shipPlacements = {};
         this.ships = [];
     }
