@@ -12,7 +12,11 @@ export default class Ship {
     }
 
     isSunk() {
-        return this.hits === this.hp;
+        if(this.hits === this.hp) {
+            this.sunk = true;
+            return true;
+        }
+        return false;
     }
 }
 

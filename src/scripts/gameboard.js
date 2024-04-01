@@ -6,6 +6,7 @@ export default class Gameboard {
     constructor() {
         this.board = Array.apply(null, Array(10)).map(() => Array(10));
         this.shipPlacements = {};
+        this.ships = [];
     }
 
     placeShip(size, direction, x, y) {
@@ -50,6 +51,7 @@ export default class Gameboard {
         occupiedTiles.forEach(tile => {
             this.shipPlacements[tile] = newShip;
         })
+        this.ships.push(newShip);
         return true;
     }
 
@@ -69,5 +71,14 @@ export default class Gameboard {
         // miss
         this.board[y][x] = "o";
         return false;
+    }
+
+    allSunk() {
+        for(let i = 0; i < this.ships.length; i++) {
+            if(this.ships[i].sunk === false) {
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -40,3 +40,16 @@ test("Fire at co-ordinate (50,-10), MISS", () => {
     expect(gameBoard.receiveAttack(50, -10)).toBe(false);
 })
 
+test("Not all ships sunk", () => {
+    const gameBoard = new Gameboard();
+    gameBoard.placeShip(3, "down", 0, 0);
+    expect(gameBoard.allSunk()).toBe(false);
+})
+
+test("Board reports all ship sunk", () => {
+    const gameBoard = new Gameboard();
+    gameBoard.placeShip(1, "down", 0, 0);
+    gameBoard.receiveAttack(0, 0);
+    expect(gameBoard.allSunk()).toBe(true);
+})
+
