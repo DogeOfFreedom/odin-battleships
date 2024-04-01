@@ -52,4 +52,22 @@ export default class Gameboard {
         })
         return true;
     }
+
+    receiveAttack(x, y) {
+        // check if attack is outside of board
+        if(x < 0 || x > 10 || y < 0 || y > 10) {
+            return false;
+        }
+        
+        const coord = [x, y];
+        // hit
+        if(Object.hasOwn(this.shipPlacements, coord)) { 
+            this.shipPlacements[coord].hit();
+            this.board[y][x] = "x";
+            return true;
+        } 
+        // miss
+        this.board[y][x] = "o";
+        return false;
+    }
 }

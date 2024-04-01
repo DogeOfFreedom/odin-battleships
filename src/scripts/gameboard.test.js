@@ -21,3 +21,22 @@ test("Place overlapping ships", () => {
     gameBoard.placeShip(2, "up", 5, 5);
     expect(gameBoard.placeShip(2, "left", 6, 4)).toBe(false);
 })
+
+test("Fire at co-ordinate (0,0), HIT", () => {
+    const gameBoard = new Gameboard();
+    gameBoard.placeShip(3, "down", 0, 0);
+    expect(gameBoard.receiveAttack(0, 0)).toBe(true);
+})
+
+test("Fire at co-ordinate (5,6), MISS", () => {
+    const gameBoard = new Gameboard();
+    gameBoard.placeShip(3, "down", 0, 0);
+    expect(gameBoard.receiveAttack(5, 6)).toBe(false);
+})
+
+test("Fire at co-ordinate (50,-10), MISS", () => {
+    const gameBoard = new Gameboard();
+    gameBoard.placeShip(3, "down", 0, 0);
+    expect(gameBoard.receiveAttack(50, -10)).toBe(false);
+})
+
