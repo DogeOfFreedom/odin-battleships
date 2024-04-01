@@ -1,10 +1,35 @@
 const renderBoards = (game) => {
     const player1BoardElement = document.querySelector(".player1-board");
-    const player1Board = game.player1.gameBoard;
-    console.log(player1Board);
+    const player1Board = game.player1.gameBoard.board;
+    player1Board.forEach(arr => {
+        const newRow = document.createElement("div");
+        newRow.className = "grid-row";
+        arr.forEach(tile => {            
+            const newTile = document.createElement("div");
+            newTile.classList.add("tile");
+            if(tile === "s") { 
+                newTile.classList.add("ship-tile");
+            } 
+            newRow.appendChild(newTile);
+        })
+        player1BoardElement.appendChild(newRow);
+    })
 
     const player2BoardElement = document.querySelector(".player2-board");
-    const player2Board = game.player2.gameBoard;
+    const player2Board = game.player2.gameBoard.board;
+    player2Board.forEach(arr => {
+        const newRow = document.createElement("div");
+        newRow.className = "grid-row";
+        arr.forEach(tile => {            
+            const newTile = document.createElement("div");
+            newTile.classList.add("tile");
+            if(tile === "s") { 
+                newTile.classList.add("ship-tile");
+            } 
+            newRow.appendChild(newTile);
+        })
+        player2BoardElement.appendChild(newRow);
+    })
 }
 
 export { renderBoards }

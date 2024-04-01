@@ -10,9 +10,9 @@ export default class Game {
 
     // Use predetermined co-ordinates for now
     mockGameSetup() {
-        // this.player1.gameBoard.placeShip(2, "left", 4, 0);
-        // this.player1.gameBoard.placeShip(5, "up", 2, 6);
-        this.player2.gameBoard.placeShip(1, "up", 0, 0);
+        this.player1.gameBoard.placeShip(2, "left", 4, 0);
+        this.player1.gameBoard.placeShip(5, "up", 2, 7);
+        this.player2.gameBoard.placeShip(1, "up", 3, 7);
         this.player2.gameBoard.placeShip(3, "down", 9, 0);
     }
 }
