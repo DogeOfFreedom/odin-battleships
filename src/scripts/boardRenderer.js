@@ -5,7 +5,12 @@ const renderPlayerBoard = (player) => {
     const element = player === 1 
         ? document.querySelector(".player1-board") 
         : document.querySelector(".player2-board");
-    const { board } = game.player1.gameBoard;
+    const { board } = player === 1 
+        ? game.player1.gameBoard 
+        : game.player2.gameBoard;
+
+
+
     board.forEach(arr => {
         const newRow = document.createElement("div");
         newRow.className = "grid-row";
@@ -25,7 +30,9 @@ const renderEnemyBoard = (player) => {
     const element = player === 1 
         ? document.querySelector(".player2-board") 
         : document.querySelector(".player1-board");
-    const { board } = game.player2.gameBoard;
+        const { board } = player === 1 
+        ? game.player2.gameBoard 
+        : game.player1.gameBoard;
     
     let i = 0;
     board.forEach(arr => {
@@ -60,7 +67,8 @@ const addEnemyBoardLogic = (player) => {
         children.forEach(child => {
             const [x, y] = child.getAttribute("value").split("-");
             child.addEventListener("click", () => {
-                game.attackPlayer(2, x, y);
+                const target = player === 1 ? 2 : 1;
+                game.attackPlayer(target, x, y);
                 const tile = player === 1 
                     ? game.player2.gameBoard.board[y][x]
                     : game.player1.gameBoard.board[y][x]
