@@ -10,4 +10,8 @@ export default class Player {
     get gameBoard() {
         return this._gameBoard;
     }
+
+    receiveAttack(x, y) {
+        this._gameBoard.receiveAttack(x, y);
+    }
 }

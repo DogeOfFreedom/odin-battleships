@@ -1,11 +1,19 @@
 import ComputerPlayer from "./computerPlayer";
 import Player from "./player";
 
-export default class Game {
+class Game {
     constructor() {
         this.player1 = new Player("player1");
         this.player2 = new ComputerPlayer();
         this.mockGameSetup();
+    }
+
+    attackPlayer(player, x, y) {
+        if(player === 1) {
+            this.player1.receiveAttack(x, y);
+        } else {
+            this.player2.receiveAttack(x, y);
+        }
     }
 
     // Use predetermined co-ordinates for now
@@ -16,3 +24,7 @@ export default class Game {
         this.player2.gameBoard.placeShip(3, "down", 9, 0);
     }
 }
+
+const game = new Game();
+
+export default game;

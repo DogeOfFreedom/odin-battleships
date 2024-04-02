@@ -1,6 +1,4 @@
 import "../style.css";
-import { renderBoards } from "./boardRenderer";
-import Game from "./game";
+import boardRenderer from "./boardRenderer";
 
-const game = new Game();
-renderBoards(game);
+boardRenderer.initialiseBoards();
