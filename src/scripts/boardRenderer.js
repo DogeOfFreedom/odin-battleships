@@ -1,8 +1,10 @@
 /* eslint-disable no-plusplus */
 import game from "./game";
 
-const renderPlayerBoard = () => {
-    const element = document.querySelector(".player1-board");
+const renderPlayerBoard = (player) => {
+    const element = player === 1 
+        ? document.querySelector(".player1-board") 
+        : document.querySelector(".player2-board");
     const { board } = game.player1.gameBoard;
     board.forEach(arr => {
         const newRow = document.createElement("div");
@@ -19,8 +21,10 @@ const renderPlayerBoard = () => {
     })
 }
 
-const renderEnemyBoard = () => {
-    const element = document.querySelector(".player2-board");
+const renderEnemyBoard = (player) => {
+    const element = player === 1 
+        ? document.querySelector(".player2-board") 
+        : document.querySelector(".player1-board");
     const { board } = game.player2.gameBoard;
     
     let i = 0;
@@ -46,8 +50,10 @@ const renderEnemyBoard = () => {
     })
 }
 
-const addEnemyBoardLogic = () => {
-    const enemyBoard = document.querySelector(".player2-board");
+const addEnemyBoardLogic = (player) => {
+    const enemyBoard = player === 1 
+        ? document.querySelector(".player2-board") 
+        : document.querySelector(".player1-board");
     const rows = Array.from(enemyBoard.children);
     rows.forEach(row => {
         const children = Array.from(row.children);
@@ -55,7 +61,9 @@ const addEnemyBoardLogic = () => {
             const [x, y] = child.getAttribute("value").split("-");
             child.addEventListener("click", () => {
                 game.attackPlayer(2, x, y);
-                const tile = game.player2.gameBoard.board[y][x];
+                const tile = player === 1 
+                    ? game.player2.gameBoard.board[y][x]
+                    : game.player1.gameBoard.board[y][x]
                 if(tile === "x") {
                     child.classList.add("enemy-hit-tile");
                 } else if (tile === "o") {
@@ -67,11 +75,10 @@ const addEnemyBoardLogic = () => {
     })
 }
 
-
-const initialiseBoards = () => {
-    renderPlayerBoard();
-    renderEnemyBoard();
-    addEnemyBoardLogic();
+const renderBoards = (currentPlayer) => {
+    renderPlayerBoard(currentPlayer);
+    renderEnemyBoard(currentPlayer);
+    addEnemyBoardLogic(currentPlayer);
 }
 
-export default { initialiseBoards }
+export default { renderBoards }
