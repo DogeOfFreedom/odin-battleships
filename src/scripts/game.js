@@ -19,22 +19,21 @@ class Game {
 
     attackPlayer(x, y) {
         const hit = this.turn === 1 ? this.player2.receiveAttack(x, y) : this.player1.receiveAttack(x, y);
-
-        if(!hit) {
-            if(this.vsComputer) {
-                this.computerTurn();
-            } else if (!this.vsComputer) { 
-                this.changeTurn();
-            } 
-        } else {
+        if(hit) {
             const allSunk = this.turn === 1 ? this.player2.isAlive() : this.player1.isAlive();
             if(allSunk) {
                 this.winner = this.turn === 1 ? this.player1.name : this.player2.name;
                 this.over = true;
                 this.updateSubs();
+            } else if (this.vsComputer && this.turn === 2) {
+                this.computerTurn();
             }
+        } else if (this.vsComputer && this.turn === 1) {
+            this.changeTurn();
+            this.computerTurn();
+        } else {
+            this.changeTurn();
         }
-        
     }
 
     // Use predetermined co-ordinates for now
@@ -51,7 +50,7 @@ class Game {
 
     computerTurn() {
         const computerMove = this.player2.getMove()
-        this.player1.receiveAttack(computerMove[0], computerMove[1]);
+        this.attackPlayer(computerMove[0], computerMove[1]);
     }
 
     get isGameOver() {

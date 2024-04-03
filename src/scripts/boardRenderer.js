@@ -62,8 +62,7 @@ const renderEnemyBoard = () => {
 }
 
 const addEnemyBoardLogic = () => {
-    const { turn } = game;
-    const enemyBoard = turn === 1 
+    const enemyBoard = game.turn === 1 
         ? document.querySelector(".player2-board") 
         : document.querySelector(".player1-board");
     const rows = Array.from(enemyBoard.children);
@@ -73,7 +72,7 @@ const addEnemyBoardLogic = () => {
             const [x, y] = child.getAttribute("value").split("-");
             child.addEventListener("click", () => {
                 game.attackPlayer(x, y);
-                const tile = turn === 1 
+                const tile = game.turn === 1 
                     ? game.player2.gameBoard.board[y][x]
                     : game.player1.gameBoard.board[y][x]
                 if(tile === "x") {
@@ -84,8 +83,7 @@ const addEnemyBoardLogic = () => {
 
                 if(game.vsComputer) {
                     renderPlayerBoard();
-                }
-                
+                }                
                 child.classList.remove("hoverable-tile");
             }, {once: true})
         })
@@ -98,4 +96,4 @@ const renderBoards = () => {
     addEnemyBoardLogic();
 }
 
-export default { renderBoards, renderPlayerBoard }
+export default { renderBoards }
