@@ -12,6 +12,10 @@ export default class Player {
     }
 
     receiveAttack(x, y) {
-        this._gameBoard.receiveAttack(x, y);
+        return this._gameBoard.receiveAttack(x, y);
+    }
+
+    isAlive() {
+        return this._gameBoard.allSunk()
     }
 }

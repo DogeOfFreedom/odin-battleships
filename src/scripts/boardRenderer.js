@@ -10,7 +10,6 @@ const renderPlayerBoard = () => {
         ? document.querySelector(".player1-board") 
         : document.querySelector(".player2-board");
     element.innerHTML = "";
-
     board.forEach(arr => {
         const newRow = document.createElement("div");
         newRow.className = "grid-row";
@@ -32,13 +31,13 @@ const renderPlayerBoard = () => {
 
 const renderEnemyBoard = () => {
     const { turn } = game;
+    const { board } = turn === 1 
+        ? game.player2.gameBoard 
+        : game.player1.gameBoard;
     const element = turn === 1 
         ? document.querySelector(".player2-board") 
         : document.querySelector(".player1-board");
-        const { board } = turn === 1 
-        ? game.player2.gameBoard 
-        : game.player1.gameBoard;
-    
+    element.innerHTML = "";
     let i = 0;
     board.forEach(arr => {
         const newRow = document.createElement("div");
@@ -78,10 +77,15 @@ const addEnemyBoardLogic = () => {
                     ? game.player2.gameBoard.board[y][x]
                     : game.player1.gameBoard.board[y][x]
                 if(tile === "x") {
-                    child.classList.add("enemy-hit-tile");
+                    child.classList.add("hit-tile");
                 } else if (tile === "o") {
-                    child.classList.add("enemy-miss-tile");
+                    child.classList.add("miss-tile");
                 }
+
+                if(game.vsComputer) {
+                    renderPlayerBoard();
+                }
+                
                 child.classList.remove("hoverable-tile");
             }, {once: true})
         })

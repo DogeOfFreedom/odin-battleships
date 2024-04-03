@@ -1,13 +1,9 @@
 import "../style.css";
-import boardRenderer from "./boardRenderer";
 import game from "./game";
+import boardRenderer from "./boardRenderer";
+import gameOverUI from "./gameOverUI";
 
 boardRenderer.renderBoards();
+gameOverUI.setupResetBtn();
+game.addSub(gameOverUI);
 
-const compAttackSimBtn = document.querySelector(".comp-attack");
-compAttackSimBtn.addEventListener("click", () => {
-    for(let i = 0; i < 10; i += 1) {
-        game.computerTurn();
-    }
-    boardRenderer.renderPlayerBoard();
-})
