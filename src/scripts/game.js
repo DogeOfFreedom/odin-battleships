@@ -5,7 +5,7 @@ class Game {
     constructor() {
         this.player1 = new Player("player1");
         this.player2 = new ComputerPlayer();
-        this.turn = 2;
+        this.turn = 1;
         this.mockGameSetup();
     }
 

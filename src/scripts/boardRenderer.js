@@ -3,12 +3,13 @@ import game from "./game";
 
 const renderPlayerBoard = () => {
     const { turn } = game; 
-    const element = turn === 1 
-        ? document.querySelector(".player1-board") 
-        : document.querySelector(".player2-board");
     const { board } = turn === 1 
         ? game.player1.gameBoard 
         : game.player2.gameBoard;
+    const element = turn === 1 
+        ? document.querySelector(".player1-board") 
+        : document.querySelector(".player2-board");
+    element.innerHTML = "";
 
     board.forEach(arr => {
         const newRow = document.createElement("div");
@@ -18,7 +19,11 @@ const renderPlayerBoard = () => {
             newTile.classList.add("player-tile");
             if(tile === "s") { 
                 newTile.classList.add("ship-tile");
-            } 
+            } else if (tile === "x") {
+                newTile.classList.add("hit-tile");
+            } else if (tile === "o") {
+                newTile.classList.add("miss-tile");
+            }
             newRow.appendChild(newTile);
         })
         element.appendChild(newRow);
@@ -45,9 +50,9 @@ const renderEnemyBoard = () => {
             const value = `${j}-${i}`;
             newTile.setAttribute("value", value);
             if(tile === "x") {
-                newTile.classList.add("enemy-hit-tile");
+                newTile.classList.add("hit-tile");
             } else if (tile === "o") {
-                newTile.classList.add("enemy-miss-tile");
+                newTile.classList.add("miss-tile");
             }
             newRow.appendChild(newTile);
             j += 1;
@@ -89,4 +94,4 @@ const renderBoards = () => {
     addEnemyBoardLogic();
 }
 
-export default { renderBoards }
+export default { renderBoards, renderPlayerBoard }

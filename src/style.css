@@ -45,12 +45,12 @@ header h1 {
     background-color: rgba(216, 0, 0, 0.3);
 }
 
-.enemy-hit-tile {
+.hit-tile {
     border: 1px solid rgb(0, 0, 0);
     background-color: rgb(226, 0, 0)
 }
 
-.enemy-miss-tile {
+.miss-tile {
     border: 1px solid rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.7);
 }
@@ -58,5 +58,20 @@ header h1 {
 .ship-tile {
     background-color: rgba(4, 63, 238, 0.7);
     border: 1px solid rgb(2, 41, 158);
-
 }
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+
+    button {
+        border-radius: 10px;
+        background-color: rgb(252, 243, 228);
+        color: black;
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
