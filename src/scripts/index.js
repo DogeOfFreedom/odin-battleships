@@ -6,7 +6,7 @@ boardRenderer.renderBoards();
 
 const compAttackSimBtn = document.querySelector(".comp-attack");
 compAttackSimBtn.addEventListener("click", () => {
-    for(let i = 0; i < 100; i += 1) {
+    for(let i = 0; i < 10; i += 1) {
         game.computerTurn();
     }
     boardRenderer.renderPlayerBoard();

@@ -6,6 +6,7 @@ class Game {
         this.player1 = new Player("player1");
         this.player2 = new ComputerPlayer();
         this.turn = 1;
+        this.over = false;
         this.mockGameSetup();
     }
 
@@ -32,6 +33,10 @@ class Game {
 
     changeTurn() {
         this.turn = this.turn === 1 ? 2 : 1;
+    }
+
+    get isGameOver() {
+        return this.over;
     }
 }
 

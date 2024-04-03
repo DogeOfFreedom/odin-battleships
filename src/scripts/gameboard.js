@@ -10,33 +10,26 @@ export default class Gameboard {
     }
 
     placeShip(size, direction, x, y) {
-        // Check if valid placement
         const occupiedTiles = [];
-        switch (direction) {
-            case "up":
-                for(let i = 0; i <= size; i++) {
+        for(let i = 0; i < size; i++) {
+            switch(direction) {
+                case "up":
                     occupiedTiles.push([x, y - i]);
-                }
-                break;
-            case "down":
-                for(let i = 0; i <= size; i++) {
+                    break;
+                case "down":
                     occupiedTiles.push([x, y + i]);
-                }
-                break;
-            case "left":
-                for(let i = 0; i <= size; i++) {
+                    break;
+                case "left":
                     occupiedTiles.push([x - i, y]);
-                }
-                break;
-            default: // right
-                for(let i = 0; i <= size; i++) {
+                    break;
+                default: // right
                     occupiedTiles.push([x + 1, y]);
-                }
-                break;
-        }        
+                    break;
+            }
+        }
 
         // Check if tiles are inside board and unoccupied
-        for(let i = 0; i <= size; i++) {
+        for(let i = 0; i < size; i++) {
             if(occupiedTiles[i][0] < 0 || occupiedTiles[i][0] > 10 || occupiedTiles[i][1] < 0 || occupiedTiles[i][1] > 10) {
                 return false;
             }
