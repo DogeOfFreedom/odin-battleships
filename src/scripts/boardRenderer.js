@@ -1,15 +1,14 @@
 /* eslint-disable no-plusplus */
 import game from "./game";
 
-const renderPlayerBoard = (player) => {
-    const element = player === 1 
+const renderPlayerBoard = () => {
+    const { turn } = game; 
+    const element = turn === 1 
         ? document.querySelector(".player1-board") 
         : document.querySelector(".player2-board");
-    const { board } = player === 1 
+    const { board } = turn === 1 
         ? game.player1.gameBoard 
         : game.player2.gameBoard;
-
-
 
     board.forEach(arr => {
         const newRow = document.createElement("div");
@@ -26,11 +25,12 @@ const renderPlayerBoard = (player) => {
     })
 }
 
-const renderEnemyBoard = (player) => {
-    const element = player === 1 
+const renderEnemyBoard = () => {
+    const { turn } = game;
+    const element = turn === 1 
         ? document.querySelector(".player2-board") 
         : document.querySelector(".player1-board");
-        const { board } = player === 1 
+        const { board } = turn === 1 
         ? game.player2.gameBoard 
         : game.player1.gameBoard;
     
@@ -57,8 +57,9 @@ const renderEnemyBoard = (player) => {
     })
 }
 
-const addEnemyBoardLogic = (player) => {
-    const enemyBoard = player === 1 
+const addEnemyBoardLogic = () => {
+    const { turn } = game;
+    const enemyBoard = turn === 1 
         ? document.querySelector(".player2-board") 
         : document.querySelector(".player1-board");
     const rows = Array.from(enemyBoard.children);
@@ -67,9 +68,8 @@ const addEnemyBoardLogic = (player) => {
         children.forEach(child => {
             const [x, y] = child.getAttribute("value").split("-");
             child.addEventListener("click", () => {
-                const target = player === 1 ? 2 : 1;
-                game.attackPlayer(target, x, y);
-                const tile = player === 1 
+                game.attackPlayer(x, y);
+                const tile = turn === 1 
                     ? game.player2.gameBoard.board[y][x]
                     : game.player1.gameBoard.board[y][x]
                 if(tile === "x") {
@@ -83,10 +83,10 @@ const addEnemyBoardLogic = (player) => {
     })
 }
 
-const renderBoards = (currentPlayer) => {
-    renderPlayerBoard(currentPlayer);
-    renderEnemyBoard(currentPlayer);
-    addEnemyBoardLogic(currentPlayer);
+const renderBoards = () => {
+    renderPlayerBoard();
+    renderEnemyBoard();
+    addEnemyBoardLogic();
 }
 
 export default { renderBoards }

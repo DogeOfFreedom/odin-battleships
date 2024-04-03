@@ -8,13 +8,13 @@ export default class ComputerPlayer extends Player {
         this.moves = [];
     }
 
-    play(gameBoard) {
+    getMove() {
         let coord = this.chooseRandomCoord();
         while (this.alreadyMadeMove(coord)) {
             coord = this.chooseRandomCoord();
         };
         this.moves.push(coord);
-        gameBoard.receiveAttack(coord[0], coord[1]);
+        return coord;
     }
 
     alreadyMadeMove(move) {
